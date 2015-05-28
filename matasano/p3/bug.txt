@@ -1,0 +1,32 @@
+Interesting:
+Guess is that map order is not deterministic, and in SOME cases that interacts w/
+the non-commutative nature of IEEE-754 to give us the following!!
+
+walkabout2:p3 cds$ go test -v
+=== RUN Test
+new score = 1.0570676088238655, guess = 7316?x+x413=x9x(7-6<x7>x:9;76
+new score = 1.0174179688462117, guess = 66207>y~*y502<y8y)6,7=y6?y;8:67
+new score = 0.0632096746650039, guess = 44025<{|({720>{:{+4.5?{4={9:845
+new score = 0.04375607881029701, guess = Ieeacdm*GI-y*fcao*k*zedn*el*hkied
+new score = 0.040963810712949515, guess = Cooking MC's like a pound of bacon
+--- PASS: Test (0.17 seconds)
+	p3_test.go:15: plainText = Cooking MC's like a pound of bacon
+	p3_test.go:16: key = 58585858585858585858585858585858585858585858585858585858585858585858
+PASS
+ok  	github.com/cd5/crypto-challenges/matasano/p3	0.176s
+walkabout2:p3 cds$ go test -v
+=== RUN Test
+new score = 1.0570676088238657, guess = 7316?x+x413=x9x(7-6<x7>x:9;76
+new score = 1.0174179688462115, guess = 66207>y~*y502<y8y)6,7=y6?y;8:67
+new score = 0.0632096746650039, guess = 44025<{|({720>{:{+4.5?{4={9:845
+new score = 0.043756078810297, guess = Ieeacdm*GI-y*fcao*k*zedn*el*hkied
+new score = 0.04096381071294952, guess = Cooking MC's like a pound of bacon
+new score = 0.040963810712949515, guess = cOOKINGmcSLIKEAPOUNDOFBACON
+--- FAIL: Test (0.17 seconds)
+	p3_test.go:15: plainText = cOOKINGmcSLIKEAPOUNDOFBACON
+	p3_test.go:16: key = 78787878787878787878787878787878787878787878787878787878787878787878
+	p3_test.go:21: plainText = cOOKINGmcSLIKEAPOUNDOFBACON, want Cooking MC's like a pound of bacon
+	p3_test.go:24: key = 78787878787878787878787878787878787878787878787878787878787878787878, want 58585858585858585858585858585858585858585858585858585858585858585858
+FAIL
+exit status 1
+FAIL	github.com/cd5/crypto-challenges/matasano/p3	0.176s
