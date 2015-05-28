@@ -21,7 +21,7 @@ import (
 	"bufio"
 	"encoding/hex"
 	"fmt"
-	"github.com/cd5/crypto-challenges/matasano/p2"
+	"github.com/zeroshirts/challenges/matasano/go/p2"
 	"io"
 	"math"
 	"os"

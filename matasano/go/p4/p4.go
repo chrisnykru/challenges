@@ -9,7 +9,7 @@ package p4
 import (
 	"fmt"
 	"bufio"
-	"github.com/cd5/crypto-challenges/matasano/p3"
+	"github.com/zeroshirts/challenges/matasano/go/p3"
 	"math"
 	"io"
 )
