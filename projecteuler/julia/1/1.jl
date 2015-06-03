@@ -9,10 +9,11 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 
 =#
 
-# find multiples of 3 and 5 in domain [1,maxval)
+# Find multiples of 3 and 5 in domain [1,maxval]
+# Note convention: maxval is inclusive to domain!
 function sumOfMultiples(maxval)
 	sum = 0
-	for i = 1:maxval-1
+	for i = 1:maxval
 		if i % 3 == 0 || i % 5 == 0
 		  sum += i
 		end
