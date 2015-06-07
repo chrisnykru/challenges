@@ -1,8 +1,3 @@
-
-## XXX question: if I do integer/integer in Julia,
-## and the first int is larger than 2^53, does it get inaccurately
-## converted to float??...YES.
-
 #=
 
 julia> 2^56
@@ -13,8 +8,27 @@ julia> Float64(2^56)
 
 julia> (2^56)/2
 3.602879701896397e16
+# note! above answer is slightly off due to floating point approx error above 2^53!
+
 
 julia> div(2^56,2)
 36028797018963968
+
+
+
+
+
+
+
+
+julia> factor(2520)
+Dict{Int64,Int64} with 4 entries:
+  7 => 1
+  2 => 3
+  3 => 2
+  5 => 1
+
+
+
 
 =#
