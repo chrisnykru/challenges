@@ -13,7 +13,7 @@ the numbers from 1 to 20?
 using Base.Test
 
 # all numbers in [1,maxval]
-function smallestNumberEvenlyDivisibleBy(maxval)
+function findSmallest(maxval)
   if maxval < 1
     error("maxval < 1")
   end
@@ -21,6 +21,7 @@ function smallestNumberEvenlyDivisibleBy(maxval)
   while true
     ok = true
 	for i in 1:maxval
+	  # note: % is potentially unsafe when x > 2^53?
 	  if x % i != 0
 	    ok = false
 		break
@@ -34,5 +35,33 @@ function smallestNumberEvenlyDivisibleBy(maxval)
   return x
 end
 
-@test smallestNumberEvenlyDivisibleBy(10) == 2520
-@test smallestNumberEvenlyDivisibleBy(20) == 232792560
+#=
+# not really any faster
+function findSmallest2(maxval)
+  if maxval < 1
+    error("maxval < 1")
+  end
+  x = maxval
+  while true
+    ok = true
+	for i in 1:maxval
+	  if x % i != 0
+	    x += (x % i)
+		ok = false
+		break
+	  end
+	end
+	if ok
+	  return x
+	end
+  end
+  return x
+end
+
+@time @test findSmallest2(10) == 2520
+@time @test findSmallest2(20) == 232792560
+
+=#
+
+@time @test findSmallest(10) == 2520
+@time @test findSmallest(20) == 232792560
