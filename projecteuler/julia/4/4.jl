@@ -48,4 +48,4 @@ end
 @test IsPalindrome(929) == true
 @test IsPalindrome(1212) == false
 
-@test largestPalindromeFromProduct(999) == (993, 913, 906609)
+@time @test largestPalindromeFromProduct(999) == (993, 913, 906609)

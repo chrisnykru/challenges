@@ -12,8 +12,10 @@ four million, find the sum of the even-valued terms.
 
 =#
 
-## short-hand:
-## fib(n) = n < 2 ? n : fib(n - 1) + fib(n - 2)
+using Base.Test
+
+# alternative def:
+# fib(n) = n < 2 ? n : fib(n - 1) + fib(n - 2)
 
 function sumOfEvenFibonacci(maxval)
 	# according to problem convention
@@ -33,3 +35,5 @@ function sumOfEvenFibonacci(maxval)
 	end
 	return sum
 end
+
+@time @test sumOfEvenFibonacci(4e6) == 4613732
