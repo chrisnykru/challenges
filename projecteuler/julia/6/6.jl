@@ -29,5 +29,18 @@ function naive(n)
   return abs(sumofsquares - squareofsums)
 end
 
+function smarter(n)
+  #=
+  Sum(0,n) i = n(n+1)/2
+  Sum(0,n) i^2 = n^3/3 + n^2/2 + n/6
+  
+  answer = n^3/3 + n^2/2 + n/6 - (n(n+1)/2)^2
+  answer = -n^4/4 - n^3/6 + n^2/4 + n/6
+  =#
+  return abs(-1*n^4/4 - n^3/6 + n^2/4 + n/6)
+end
+
 @time @test naive(10) == 2640
 @time @test naive(100) == 25164150
+@time @test smarter(10) == 2640
+@time @test smarter(100) == 25164150
