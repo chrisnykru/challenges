@@ -20,17 +20,17 @@ function findSmallest(maxval)
   x = maxval
   while true
     ok = true
-	for i in 1:maxval
-	  # note: % is potentially unsafe when x > 2^53?
-	  if x % i != 0
-	    ok = false
-		break
+	  for i in 1:maxval
+	    # note: % is potentially unsafe when x > 2^53?
+	    if x % i != 0
+	      ok = false
+		    break
+	    end
 	  end
-	end
-	if ok
-	  break
-	end
-	x = x + 1
+	  if ok
+	    break
+	  end
+	  x = x + 1
   end
   return x
 end

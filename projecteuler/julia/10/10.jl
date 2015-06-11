@@ -14,8 +14,8 @@ function sumOfPrimesBelow(ceil)
   sum = 0
   for i in 1:ceil-1
     if isprime(i)
-	  sum += i
-	end
+	    sum += i
+	  end
   end
   return sum
 end

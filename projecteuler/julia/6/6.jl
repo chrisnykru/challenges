@@ -23,7 +23,7 @@ function naive(n)
   squareofsums = 0
   for i in 1:n
     sumofsquares += i^2
-	squareofsums += i
+	  squareofsums += i
   end
   squareofsums *= squareofsums
   return abs(sumofsquares - squareofsums)
