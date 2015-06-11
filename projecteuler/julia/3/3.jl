@@ -10,8 +10,11 @@ What is the largest prime factor of the number 600851475143 ?
 
 using Base.Test
 
-function divisors(x)
+function primeFactors(x)
   div = Dict(1 => true)
+  if isprime(x)
+    div[x] = true
+  end
   for i in 1:round(Int, floor(sqrt(x)))
     if x%i == 0 && isprime(i)
 	    div[i] = true
@@ -22,7 +25,7 @@ end
 
 function largestPrimeFactor(x)
   largest = 0
-  for k in keys(divisors(x))
+  for k in keys(primeFactors(x))
     if k > largest
       largest = k
     end

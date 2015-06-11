@@ -26,11 +26,6 @@ What is the value of the first triangle number to have over five hundred divisor
 
 using Base.Test
 
-
-#=
-TODO: make a triangle number generator
-=#
-
 type TriangleGen
   x::Int
   sum::Int
@@ -44,10 +39,26 @@ function nextTriangleNum(gen::TriangleGen)
   return gen.sum
 end
 
-# XXX: want to call divisors function from ../3/3.jl...
-# XXX: this will be a good test of includes... relative includes, maybe
+function divisors(x)
+  div = Dict(1 => true, x => true)
+  for i in 2:round(Int, floor(sqrt(x)))
+    if x % i == 0
+      div[i] = true
+      div[x/i] = true
+    end
+  end
+  return div
+end
 
-#function findTriNum(numDivisors)
-#end
+function findTriNum(atLeastNumDivisors)
+  tgen = TriangleGen()
+  while true
+    tnum = nextTriangleNum(tgen)
+    if length(keys(divisors(tnum))) >= atLeastNumDivisors
+      return tnum
+    end
+  end
+  error("unexpected")
+end
 
-#@time @test findTriNum(500) == 76576500
+@time @test findTriNum(501) == 76576500
