@@ -16,21 +16,18 @@ using Base.Test
 # square grid, no backtracking
 function numRoutes(gridSize)
   #=
-  note: r1 r2 d1 d2 === r2 r1 d2 d1
+  n = gridSize + gridSize
+  n! permutations
+  
+  Overcounting by gridSize! * gridSize!
+  e.g., r1 r2 d1 d2 === r2 r1 d2 d1
   and r1 r2 d1 d2 === r2 r1 d1 d2
   and r1 r2 d1 d2 === r1 r2 d2 d1
   
-  n P k = n!/(k!(n-k)!)
-  
-  XXX I don't understand my own logic anymore...
-  why does this work?
-  
   =#
-  
-  # need BigInt here to avoid factorial overflow error!
   n = big(gridSize + gridSize)
-  k = big(gridSize)
-  return div(factorial(n), factorial(k) * factorial(n-k))
+  p = factorial(n)
+  return div(div(p, factorial(gridSize)), factorial(gridSize))
 end
 
 @time @test numRoutes(2) == 6
