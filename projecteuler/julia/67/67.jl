@@ -24,3 +24,13 @@ billion years to check them all. There is an efficient algorithm to solve it.
 =#
 
 using Base.Test
+
+include("../18/18.jl")
+
+function Compute()
+  contents = open(readall, "triangle.txt", "r")
+  src = IOBuffer(contents)
+  return TriangleMergeUpAndReduce(ParseTriangleNumbers(src))
+end
+
+@time @test Compute() == 7273
