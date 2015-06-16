@@ -91,6 +91,10 @@ function ParseTriangleNumbers(src::IO)
   return m
 end
 
+#=
+TODO: might want custom datatype for triangle numbers so that
+invariants can't be violated...
+=#
 function TriangleMergeUpAndReduce(m::Array{Any,2})
   if size(m)[1] != size(m)[2]
     error("expect square matrix, got ", size(m))
@@ -115,9 +119,7 @@ end
 @test_throws ErrorException ParseTriangleNumbers(IOBuffer("1\n2 3 4"))
 @test_throws ErrorException ParseTriangleNumbers(IOBuffer("1\n2\n3 4 5"))
 @test_throws ErrorException ParseTriangleNumbers(IOBuffer("1\n2 3 4\n5 6 7"))
-
-# XXX test edge cases for mergeUpAndReduce
-#@time @test_throws ErrorException TriangleMergeUpAndReduce(Array{Any, 3})
+@test_throws ErrorException TriangleMergeUpAndReduce([1 2 ""; 4 5 6])
 
 @time @test TriangleMergeUpAndReduce(ParseTriangleNumbers(triSmall())) == 23
 @time @test TriangleMergeUpAndReduce(ParseTriangleNumbers(triBig())) == 1074
