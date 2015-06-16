@@ -71,13 +71,8 @@ end
 # Empties are ""
 function ParseTriangleNumbers(src::IO)
   m = readdlm(src)
-  if size(m)[1] != size(m)[2]
-    error("expect square matrix, got ", size(m))
-  end
-  
-  # row,col notation
-  for i in 1:size(m)[1]
-    for j in 1:size(m)[2]
+  for i in 1:size(m)[1] # rows
+    for j in 1:size(m)[2] # cols
       if i >= j
         if typeof(m[i,j]) != Int64
           error(@sprintf("typeof(m[%d,%d]) != Int64", i, j))
@@ -97,12 +92,6 @@ function ParseTriangleNumbers(src::IO)
 end
 
 function TriangleMergeUpAndReduce(m::Array{Any,2})
-  #=
-   XXX
-   
-   3x3
-   2x2
-  =#
   if size(m)[1] != size(m)[2]
     error("expect square matrix, got ", size(m))
   end
@@ -122,7 +111,13 @@ function TriangleMergeUpAndReduce(m::Array{Any,2})
   return m[1,1]
 end
 
-# XXX test triParse edge cases
+# Matrix numbers are not triangle shaped
+@test_throws ErrorException ParseTriangleNumbers(IOBuffer("1\n2 3 4"))
+@test_throws ErrorException ParseTriangleNumbers(IOBuffer("1\n2\n3 4 5"))
+@test_throws ErrorException ParseTriangleNumbers(IOBuffer("1\n2 3 4\n5 6 7"))
+
+# XXX test edge cases for mergeUpAndReduce
+#@time @test_throws ErrorException TriangleMergeUpAndReduce(Array{Any, 3})
 
 @time @test TriangleMergeUpAndReduce(ParseTriangleNumbers(triSmall())) == 23
 @time @test TriangleMergeUpAndReduce(ParseTriangleNumbers(triBig())) == 1074
