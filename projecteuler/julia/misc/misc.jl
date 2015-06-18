@@ -7,11 +7,11 @@ misc. utility functions
 using Base.Test
 
 function divisors(x)
-  d = Dict(1 => true, x => true)
+  d = Set([1, x])
   for i in 2:round(typeof(x), floor(sqrt(x)))
     if mod(x, i) == 0
-      d[i] = true
-      d[div(x, i)] = true
+      push!(d, i)
+      push!(d, div(x, i))
     end
   end
   return d
@@ -23,7 +23,7 @@ function properDivisors(x)
   return d
 end
 
-@test divisors(28) == Dict(1 => true, 28 => true, 2 => true, 4 => true, 7 => true, 14 => true)
-@test divisors(big(24)) == Dict(1 => true, 24 => true, 2 => true, 3 => true, 4 => true, 6 => true, 8 => true, 12 => true)
+@test divisors(28) == Set([1, 28, 2, 4, 7, 14])
+@test divisors(big(24)) == Set([1, 24, 2, 3, 4, 6, 8, 12])
 
-@test properDivisors(28) == Dict(1 => true, 2 => true, 4 => true, 7 => true, 14 => true)
+@test properDivisors(28) == Set([1, 2, 4, 7, 14])

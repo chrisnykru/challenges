@@ -45,7 +45,7 @@ function findTriNum(atLeastNumDivisors)
   tgen = TriangleGen()
   while true
     tnum = nextTriangleNum(tgen)
-    if length(keys(divisors(tnum))) >= atLeastNumDivisors
+    if length(divisors(tnum)) >= atLeastNumDivisors
       return tnum
     end
   end

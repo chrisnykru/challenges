@@ -24,8 +24,8 @@ include("../misc/misc.jl")
 
 function d(x)
   sum = 0
-  for k in keys(properDivisors(x))
-    sum += k
+  for pd in properDivisors(x)
+    sum += pd
   end
   return sum
 end
