@@ -6,7 +6,6 @@ misc. utility functions
 
 using Base.Test
 
-# XXX does this work w/ big shit?
 function divisors(x)
   d = Dict(1 => true, x => true)
   for i in 2:round(typeof(x), floor(sqrt(x)))

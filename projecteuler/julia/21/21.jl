@@ -32,19 +32,21 @@ end
 
 function amicable(a)
   b = d(a)
-  return d(b) == a && a != b 
+  isAmicable = (d(b) == a && a != b)
+  return (b, isAmicable) 
 end
 
 
 function sumOfAmicableNumbersLessThan(lessThanVal)
   sum = 0
   amicablePairs = Dict()
-  for a in 1:lessThanVal
-    if !amicable(a)
+  for a in 1:lessThanVal-1
+    b, isAmicable = amicable(a)
+    if !isAmicable
       continue
     end
-    if !haskey(amicablePairs, a) && !haskey(amicablePairs, d(a))
-      amicablePairs[a] = d(a)
+    if !haskey(amicablePairs, a) && !haskey(amicablePairs, b)
+      amicablePairs[a] = b
     end
   end
   
@@ -54,4 +56,6 @@ function sumOfAmicableNumbersLessThan(lessThanVal)
   return sum
 end
 
+@test d(220) == 284
+@test d(284) == 220
 @time @test sumOfAmicableNumbersLessThan(10000) == 31626
