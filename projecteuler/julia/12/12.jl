@@ -26,6 +26,8 @@ What is the value of the first triangle number to have over five hundred divisor
 
 using Base.Test
 
+include("../misc/misc.jl")
+
 type TriangleGen
   x::Int
   sum::Int
@@ -37,17 +39,6 @@ function nextTriangleNum(gen::TriangleGen)
   gen.sum += gen.x
   gen.x += 1
   return gen.sum
-end
-
-function divisors(x)
-  div = Dict(1 => true, x => true)
-  for i in 2:round(Int, floor(sqrt(x)))
-    if x % i == 0
-      div[i] = true
-      div[x/i] = true
-    end
-  end
-  return div
 end
 
 function findTriNum(atLeastNumDivisors)

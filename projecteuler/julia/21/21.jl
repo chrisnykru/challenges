@@ -20,6 +20,10 @@ Evaluate the sum of all the amicable numbers under 10000.
 
 using Base.Test
 
+# XXX won't be last time we need code for proper divisors
+
+
+
 function sumOfAmicableNumbersLessThan(lessThan)
 end
 
