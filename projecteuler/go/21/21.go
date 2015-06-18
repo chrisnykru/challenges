@@ -48,6 +48,7 @@ func sumOfAmicableNumbersUnder(max uint64) uint64 {
 		// amicable pair
 		if _, ok := amicablePairs[a]; !ok {
 			if _, ok = amicablePairs[d_a]; !ok {
+				fmt.Printf("a = %v   d_a = %v\n", a, d_a)
 				amicablePairs[a] = d_a
 			}
 		}

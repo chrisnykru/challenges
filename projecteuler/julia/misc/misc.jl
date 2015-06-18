@@ -7,6 +7,9 @@ misc. utility functions
 using Base.Test
 
 function divisors(x)
+  if x < 1
+    error("x < 1")
+  end
   d = Set([1, x])
   for i in 2:round(typeof(x), floor(sqrt(x)))
     if mod(x, i) == 0

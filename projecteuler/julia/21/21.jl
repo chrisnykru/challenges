@@ -23,6 +23,12 @@ using Base.Test
 include("../misc/misc.jl")
 
 function d(x)
+  if x < 0
+    error("x < 0")
+  elseif x == 0
+    # hardcode this to workaround exception in properDivisors for x==0
+    return 0
+  end
   sum = 0
   for pd in properDivisors(x)
     sum += pd
@@ -36,7 +42,6 @@ function amicable(a)
   return (b, isAmicable) 
 end
 
-
 function sumOfAmicableNumbersLessThan(lessThanVal)
   sum = 0
   amicablePairs = Dict()
@@ -46,6 +51,7 @@ function sumOfAmicableNumbersLessThan(lessThanVal)
       continue
     end
     if !haskey(amicablePairs, a) && !haskey(amicablePairs, b)
+      println("a: ", a, " b: ", b)
       amicablePairs[a] = b
     end
   end
