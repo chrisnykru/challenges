@@ -20,11 +20,38 @@ Evaluate the sum of all the amicable numbers under 10000.
 
 using Base.Test
 
-# XXX won't be last time we need code for proper divisors
+include("../misc/misc.jl")
 
-
-
-function sumOfAmicableNumbersLessThan(lessThan)
+function d(x)
+  sum = 0
+  for k in keys(properDivisors(x))
+    sum += k
+  end
+  return sum
 end
 
-# @time @test sumOfAmicableNumbersLessThan(10000) == 31626
+function amicable(a)
+  b = d(a)
+  return d(b) == a && a != b 
+end
+
+
+function sumOfAmicableNumbersLessThan(lessThanVal)
+  sum = 0
+  amicablePairs = Dict()
+  for a in 1:lessThanVal
+    if !amicable(a)
+      continue
+    end
+    if !haskey(amicablePairs, a) && !haskey(amicablePairs, d(a))
+      amicablePairs[a] = d(a)
+    end
+  end
+  
+  for a in keys(amicablePairs)
+    sum += a + amicablePairs[a] 
+  end
+  return sum
+end
+
+@time @test sumOfAmicableNumbersLessThan(10000) == 31626
