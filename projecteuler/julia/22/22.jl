@@ -28,10 +28,12 @@ end
 function totalNameScores()
   # specify type to avoid "NAN" name from getting intepreted as a float64 NaN
   names = readdlm("names.txt", ',', ASCIIString)
+  # vectorize so we can sort
+  names = vec(names)
+  sort!(names)
   totalScore = 0
   i = 1
   for name in names
-    println("name: ", name)
     totalScore += i * nameScore(name)
     i += 1
   end
