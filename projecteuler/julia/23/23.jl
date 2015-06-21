@@ -34,16 +34,19 @@ function SumOfProperDivisors(x)
 end
 
 function solve()
-  abundantSet = Set()
+  abundant = Int[]
   for i = 12:28123
     if SumOfProperDivisors(i) > i
-	  push!(abundantSet, i)
+	  push!(abundant, i)
 	end
   end
 
   canBeWritten = Dict()
-  for i in abundantSet
-    for j in abundantSet
+  for i in abundant
+    for j in abundant
+	  if i+j > 28123
+	    break
+	  end
 	  canBeWritten[i+j] = true
 	end
   end
