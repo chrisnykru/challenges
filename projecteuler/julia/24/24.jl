@@ -21,9 +21,7 @@ function solve()
   state = start(p)
   item = []
   for i in 1:1000000
-    if done(p, state)
-	  error("permutation iterator done early")
-	end
+    # next will throw exception after done() is true
 	item, state = next(p, state)
   end
   return item
