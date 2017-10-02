@@ -1,0 +1,7 @@
+[package]
+name = "p3"
+version = "0.1.0"
+authors = ["zeroshirts <zeroshirts@users.noreply.github.com>"]
+
+[dependencies]
+num = "0.1.29"

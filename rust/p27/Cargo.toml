@@ -1,0 +1,7 @@
+[package]
+name = "p27"
+version = "0.1.0"
+authors = ["c <c@horza3>"]
+
+[dependencies]
+primal = "0.2.3"

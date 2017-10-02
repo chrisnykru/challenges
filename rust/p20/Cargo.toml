@@ -1,0 +1,8 @@
+[package]
+name = "p20"
+version = "0.1.0"
+authors = ["c <c@horza3>"]
+
+[dependencies]
+num = "0.1.30"
+p15 = { path = "../p15" }

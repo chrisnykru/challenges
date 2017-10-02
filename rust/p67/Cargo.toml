@@ -1,0 +1,8 @@
+[package]
+name = "p67"
+version = "0.1.0"
+authors = ["c <c@horza3>"]
+
+[dependencies]
+csv = "0.14.3"
+p18 = { path = "../p18" }
