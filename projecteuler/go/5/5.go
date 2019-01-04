@@ -1,5 +1,8 @@
 /*
 
+XXX NOTE: 2017 - this has logical errors despite passing tests... the Rust code is
+more up-to-date.
+
 Smallest multiple
 
 2520 is the smallest number that can be divided by each of the numbers
