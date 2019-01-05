@@ -9,7 +9,8 @@ What is the 10001st prime number?
 
 =#
 
-using Base.Test
+using Primes
+using Test
 
 function findPrime(nth)
   x = 0

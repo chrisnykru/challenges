@@ -9,7 +9,7 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 
 =#
 
-using Base.Test
+using Test
 
 # Find multiples of 3 and 5 in domain [1,maxval]
 # Note convention: maxval is inclusive to domain!

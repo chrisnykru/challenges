@@ -8,7 +8,8 @@ What is the largest prime factor of the number 600851475143 ?
 
 =#
 
-using Base.Test
+using Primes
+using Test
 
 function largestPrimeFactor(x)
   largest = 0

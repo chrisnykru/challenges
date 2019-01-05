@@ -12,7 +12,7 @@ Find the product abc.
 
 =#
 
-using Base.Test
+using Test
 
 
 function findTripletProduct(sum)

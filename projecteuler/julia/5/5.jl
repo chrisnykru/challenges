@@ -10,7 +10,7 @@ the numbers from 1 to 20?
 
 =#
 
-using Base.Test
+using Test
 
 # all numbers in [1,maxval]
 function findSmallest(maxval)

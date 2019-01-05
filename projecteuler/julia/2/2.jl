@@ -12,7 +12,7 @@ four million, find the sum of the even-valued terms.
 
 =#
 
-using Base.Test
+using Test
 
 # alternative def:
 # fib(n) = n < 2 ? n : fib(n - 1) + fib(n - 2)

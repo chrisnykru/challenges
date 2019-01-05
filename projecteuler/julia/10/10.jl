@@ -8,7 +8,8 @@ Find the sum of all the primes below two million.
 
 =#
 
-using Base.Test
+using Primes
+using Test
 
 function sumOfPrimesBelow(ceil)
   sum = 0

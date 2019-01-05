@@ -16,7 +16,7 @@ natural numbers and the square of the sum.
 
 =#
 
-using Base.Test
+using Test
 
 function naive(n)
   sumofsquares = 0

@@ -9,7 +9,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 =#
 
-using Base.Test
+using Test
 
 function IsPalindrome(x)
   xstr = string(x)
