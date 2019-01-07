@@ -27,8 +27,8 @@ function nameScore(name::String)
 end
 
 function totalNameScores()
-  # specify type to avoid "NAN" name from getting intepreted as a float64 NaN
-  names = readdlm("names.txt", ',') #, ASCIIString)
+  # specify type to avoid pathalogical input name "NAN" name from inducing type to float64 NaN
+  names = readdlm("names.txt", ',', String)
   # vectorize so we can sort
   names = vec(names)
   sort!(names)
