@@ -21,7 +21,7 @@ two abundant numbers.
 
 =#
 
-using Base.Test
+using Test
 
 include("../misc/misc.jl")
 
