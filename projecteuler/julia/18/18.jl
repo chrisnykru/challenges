@@ -71,6 +71,11 @@ end
 # Returns NxN Array{Any,2}
 # Values are Int64
 # Empties are ""
+#
+# e.g.,
+# 75  ""  ""
+# 95  64
+# 17  47  82
 function ParseTriangleNumbers(src::IO)
   m = readdlm(src)
   for i in 1:size(m)[1] # rows
@@ -81,10 +86,7 @@ function ParseTriangleNumbers(src::IO)
           error(@sprintf("typeof(m[%d,%d]) != Int64", i, j))
         end
       else # i < j
-        if typeof(m[i,j]) != SubString{String}
-          error(@sprintf("typeof(m[%d,%d]) != SubString{ASCIIString}", i, j))
-        end
-        if m[i,j] != ""
+        if typeof(m[i,j]) != SubString{String} && m[i,j] != ""
           error(@sprintf("m[%d,%d] != \"\"", i, j))
         end
       end
