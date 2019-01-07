@@ -8,7 +8,7 @@ What is the sum of the digits of the number 2^1000?
 
 =#
 
-using Base.Test
+using Test
 
 function sumOfDigits(base, exponent)
   x = big(base)^exponent

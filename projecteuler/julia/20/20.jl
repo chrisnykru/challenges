@@ -11,14 +11,14 @@ Find the sum of the digits in the number 100!
 
 =#
 
-using Base.Test
+using Test
 
 function sumDigits()
   x = factorial(big(100))
   sum = 0
   while x > 0
     sum += mod(x, 10)
-	x = div(x, 10)
+    x = div(x, 10)
   end
   return sum
 end

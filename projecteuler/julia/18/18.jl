@@ -37,7 +37,9 @@ and requires a clever method! ;o)
 
 =#
 
-using Base.Test
+using DelimitedFiles
+using Printf
+using Test
 
 function triSmall()
   s = """3

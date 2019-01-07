@@ -19,7 +19,7 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 
 =#
 
-using Base.Test
+using Test
 
 function nextCollatzTerm(x)
   if x % 2 == 0

@@ -11,7 +11,7 @@ How many routes are there through a 20x20 grid?
 
 =#
 
-using Base.Test
+using Test
 
 # square grid, no backtracking
 function numRoutes(gridSize)

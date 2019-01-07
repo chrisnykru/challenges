@@ -4,7 +4,7 @@ misc. utility functions
 
 =#
 
-using Base.Test
+using Test
 
 function divisors(x)
   if x < 1

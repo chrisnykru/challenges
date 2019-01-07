@@ -21,7 +21,8 @@ How many Sundays fell on the first of the month during the twentieth century
 
 =#
 
-using Base.Test
+using Dates
+using Test
 
 function numSundaysOnFirstOfMonth()
   d = Date(1901, 1, 1)

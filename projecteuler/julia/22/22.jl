@@ -15,7 +15,8 @@ What is the total of all the name scores in the file?
 
 =#
 
-using Base.Test
+using DelimitedFiles
+using Test
 
 function nameScore(name::String)
   score = 0
@@ -27,7 +28,7 @@ end
 
 function totalNameScores()
   # specify type to avoid "NAN" name from getting intepreted as a float64 NaN
-  names = readdlm("names.txt", ',', ASCIIString)
+  names = readdlm("names.txt", ',') #, ASCIIString)
   # vectorize so we can sort
   names = vec(names)
   sort!(names)

@@ -18,7 +18,7 @@ Evaluate the sum of all the amicable numbers under 10000.
 
 =#
 
-using Base.Test
+using Test
 
 include("../misc/misc.jl")
 

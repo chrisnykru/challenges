@@ -24,11 +24,11 @@ What is the value of the first triangle number to have over five hundred divisor
 
 =#
 
-using Base.Test
+using Test
 
 include("../misc/misc.jl")
 
-type TriangleGen
+mutable struct TriangleGen
   x::Int
   sum::Int
   

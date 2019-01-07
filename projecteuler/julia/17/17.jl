@@ -16,7 +16,7 @@ British usage.
 
 =#
 
-using Base.Test
+using Test
 
 function numLetters(numberStr::String)
   count = 0
