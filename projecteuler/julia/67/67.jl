@@ -23,7 +23,7 @@ billion years to check them all. There is an efficient algorithm to solve it.
 
 =#
 
-using Base.Test
+using Test
 
 include("../18/18.jl")
 

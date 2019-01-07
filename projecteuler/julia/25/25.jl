@@ -25,7 +25,7 @@ What is the first term in the Fibonacci sequence to contain 1000 digits?
 
 =#
 
-using Base.Test
+using Test
 
 ### idea: fibonacci thingy that returns collect()able iteraterable stuff
 
