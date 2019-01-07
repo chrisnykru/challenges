@@ -81,7 +81,7 @@ function ParseTriangleNumbers(src::IO)
           error(@sprintf("typeof(m[%d,%d]) != Int64", i, j))
         end
       else # i < j
-        if typeof(m[i,j]) != SubString{ASCIIString}
+        if typeof(m[i,j]) != SubString{String}
           error(@sprintf("typeof(m[%d,%d]) != SubString{ASCIIString}", i, j))
         end
         if m[i,j] != ""
