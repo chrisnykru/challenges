@@ -28,8 +28,7 @@ using Test
 include("../18/18.jl")
 
 function Compute()
-  contents = open(readall, "triangle.txt", "r")
-  src = IOBuffer(contents)
+  src = open("triangle.txt", "r")
   return TriangleMergeUpAndReduce(ParseTriangleNumbers(src))
 end
 
