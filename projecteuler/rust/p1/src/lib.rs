@@ -9,10 +9,10 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 
 */
 
-#![feature(test)]
+//#![feature(test)]
 //#![feature(step_by)]
 
-extern crate test;
+//extern crate test;
 
 pub fn sum_of_multiples(max: i64) -> i64 {
   let mut sum = 0;
@@ -57,10 +57,11 @@ pub fn sum_of_multiples3(max: i64) -> i64 {
   return sum;
 }
 
+
 #[cfg(test)]
 mod tests {
     use super::*;
-    use test::Bencher;
+    //use test::Bencher;
 
     #[test]
     fn it_works() {
@@ -70,18 +71,20 @@ mod tests {
       assert_eq!(233168, sum_of_multiples3(1000));
     }
 
+    /*
     #[bench]
     fn bench_sum_of_multiples(b: &mut Bencher) {
         b.iter(|| sum_of_multiples(1000));
     }
-    /*
-    #[bench]
-    fn bench_sum_of_multiples2(b: &mut Bencher) {
-        b.iter(|| sum_of_multiples2(1000));
-    }
-    */
+    
+    //#[bench]
+    //fn bench_sum_of_multiples2(b: &mut Bencher) {
+    //    b.iter(|| sum_of_multiples2(1000));
+    //}
+    
     #[bench]
     fn bench_sum_of_multiples3(b: &mut Bencher) {
         b.iter(|| sum_of_multiples3(1000));
     }
+    */
 }
