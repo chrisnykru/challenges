@@ -18,3 +18,24 @@ func sumOfMultiples(below belowNumber: Int) -> Int {
   } 
   return sum 
 }
+
+func fasterSumOfMultiples(below belowNumber: Int) -> Int {
+    var sum = 0
+    var i = 3
+    while i < belowNumber {
+        sum += i
+        i += 3
+    }
+    i = 5
+    while i < belowNumber {
+        sum += i
+        i += 5
+    }
+    // deal with overcounting common factors
+    i = 15
+    while i < belowNumber {
+        sum -= i
+        i += 15
+    }
+    return sum
+}
