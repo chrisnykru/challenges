@@ -9,10 +9,6 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 
 */
 
-import XCTest
-
-
-// 
 func sumOfMultiples(below belowNumber: Int) -> Int { 
   var sum = 0 
   for n in 1...belowNumber-1 { 
@@ -22,12 +18,3 @@ func sumOfMultiples(below belowNumber: Int) -> Int {
   } 
   return sum 
 }
-
-final class SumOfMultiplesTests: XCTestCase {
-  func test1000() {
-    let x = sumOfMultiples(below: 1000)
-    XCTAssertEqual(x, 233168)
-  }
-}
-
-print(sumOfMultiples(below: 1000))
