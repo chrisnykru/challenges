@@ -13,11 +13,6 @@ four million, find the sum of the even-valued terms.
 */
 
 func sumFibonacciUpTo(_ doNotExceed: Int) -> Int {
-    /*
-     
-     1,1,2,3,5,8,13,...
-     */
-    
     var x = 1
     var y = 1
     var sum = 0 // first two terms are odd
