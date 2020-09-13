@@ -17,13 +17,8 @@ func sumFibonacciUpTo(_ doNotExceed: Int) -> Int {
     var y = 1
     var sum = 0 // first two terms are odd
     
-    // x=2,y=1,sum=4
-    // x=3,y=2,sum=7
-    // x=5,y=3,sum=12
     while x <= doNotExceed {
-        let tmp = x
-        x = x + y
-        y = tmp
+        (x,y) = (x + y, x)
         if x % 2 == 0 {
             sum += x
         }
