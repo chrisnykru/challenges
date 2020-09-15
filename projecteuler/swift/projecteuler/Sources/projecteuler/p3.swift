@@ -8,7 +8,15 @@ What is the largest prime factor of the number 600851475143 ?
 
 */
 
-func factors(_ x: Int) -> [Int] {
+enum ProjectEulerError: Error {
+    case outOfRange
+}
+
+// Results are not sorted
+func factors(_ x: Int) throws -> [Int] {
+    guard x > 0 else {
+        throw ProjectEulerError.outOfRange
+    }
     var res = [Int:Bool]()
     
     let sqrt_x = Int(Double(x).squareRoot())
@@ -23,11 +31,12 @@ func factors(_ x: Int) -> [Int] {
     return Array(res.keys)
 }
 
-func primeFactors(_ x: Int) -> [Int] {
+// Results are not sorted
+func primeFactors(_ x: Int) throws -> [Int] {
     var pf: [Int] = []
-    let allf = factors(x)
+    let allf = try factors(x)
     for factor in allf {
-        let tmp = factors(factor)
+        let tmp = try factors(factor)
         if tmp.count <= 2 {
             pf.append(factor)
         }
@@ -35,12 +44,6 @@ func primeFactors(_ x: Int) -> [Int] {
     return pf
 }
 
-func largestPrimeFactor(_ x: Int) -> Int {
-    var max = -1
-    for pf in primeFactors(x) {
-        if pf > max {
-            max = pf
-        }
-    }
-    return max
+func largestPrimeFactor(_ x: Int) throws -> Int {
+    return try primeFactors(x).max()!
 }
