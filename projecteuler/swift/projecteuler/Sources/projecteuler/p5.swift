@@ -10,6 +10,24 @@
 
 */
 
+// Keep incrementing y by 'x' amount until it's divisible by
+// everything in [1..x]
 func smallestMultipleEvenlyDivisible(_ x: Int) -> Int {
-    return -1
+    var y = x;
+    while true {
+        var z = x - 1
+        var ok = true
+        while z > 1 {
+            //print("\(x) \(y) \(z)")
+            if y % z != 0 {
+                ok = false
+                break
+            }
+            z -= 1
+        }
+        if ok {
+            return y
+        }
+        y += x
+    }
 }
