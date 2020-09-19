@@ -16,6 +16,28 @@ natural numbers and the square of the sum.
 
 */
 
+func sumSquareAndSquareOfSumDifferenceNaive(_ num: Int) -> Int {
+    var sumOfSquares = 0
+    var i = 1
+    while i <= num {
+        sumOfSquares += i * i
+        i += 1
+    }
+    var squareOfSums = 0
+    i = 1
+    while i <= num {
+        squareOfSums += i
+        i += 1
+    }
+    squareOfSums *= squareOfSums
+    return abs(sumOfSquares - squareOfSums)
+}
+
 func sumSquareAndSquareOfSumDifference(_ num: Int) -> Int {
-    return -1
+    // Sum(0,n) i   = n(n+1)/2
+    // Sum(0,n) i^2 = n^3/3 + n^2/2 + n/6
+    //
+    // Answer = n^3/3 + n^2/2 + n/6 - (n(n+1)/2)^2
+    //        = -n^4/4 - n^3/6 + n^2/4 + n/6
+    return abs(-1 * num * num * num * num / 4 - num * num * num / 6 + num * num / 4 + num / 6)
 }
