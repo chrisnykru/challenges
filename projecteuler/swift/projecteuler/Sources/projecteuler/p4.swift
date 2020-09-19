@@ -56,30 +56,3 @@ func findLargestPalindrome(_ numDigits: Int) -> PalindromeProduct {
     return largest
 }
 
-
-/*
-
-type productPalindrome struct {
-        i, j, ij int64
-}
-
-// [1,max]
-func largestProductPalindrome(max int64) (pp productPalindrome) {
-        // search from high to low
-        for i := max; i > 0; i-- {
-                for j := i; j > 0; j-- {
-                        ij := i * j
-                        if IsPalindrome(ij) {
-                                if ij > pp.ij {
-                                        pp = productPalindrome{i, j, ij}
-                                }
-                        }
-                }
-        }
-        return
-}
-
-func main() {
-        fmt.Printf("found %#v\n", largestProductPalindrome(999))
-}
-*/
