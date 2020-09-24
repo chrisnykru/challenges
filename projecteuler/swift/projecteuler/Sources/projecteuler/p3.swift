@@ -9,6 +9,7 @@ What is the largest prime factor of the number 600851475143 ?
 */
 
 enum ProjectEulerError: Error {
+    case internalError
     case outOfRange
 }
 

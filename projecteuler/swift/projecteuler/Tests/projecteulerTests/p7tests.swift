@@ -3,8 +3,14 @@ import XCTest
 
 final class p7Tests: XCTestCase {
     func testGetPrime() {
-        XCTAssertEqual(getPrime(6), 13)
-        //XXX XCTAssertEqual(getPrime(10001), 104743)
+        do {
+            var x = try getPrime(nth: 6)
+            XCTAssertEqual(x, 13)
+            x = try getPrime(nth: 10001)
+            XCTAssertEqual(x, 104743)
+        } catch {
+            XCTFail()
+        }
     }
     static var allTests = [
         ("testGetPrime", testGetPrime)

@@ -11,10 +11,13 @@ What is the 10,001st prime number?
 
 import Darwin // just for log()
 
-func getPrime(_ n: Int) -> Int {
-    let x = eratosthenesSieve(to: n)
-    print(x)
-    return x[n - 1]
+func getPrime(nth n: Int) throws -> Int {
+    let numToConsider = 1 << 17
+    let primes = eratosthenesSieve(to: numToConsider)
+    guard primes.count >= n else {
+        throw ProjectEulerError.internalError
+    }
+    return primes[n - 1]
 }
 
 // Code from 'Martin R' on:
