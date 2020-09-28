@@ -22,31 +22,23 @@ func pythagoreanTripletSumEquals1000() -> Int {
       a + b + (a^2 + b^2)^.5 = 1000
     */
     
-    var b = 2
-    while b < 998 {
-        var a = 1
-        while a < b {
+    for b in stride(from: 2, to: 998, by: 1) {
+        for a in stride(from: 1, to: b, by: 1) {
             let cf = Double(a * a + b * b).squareRoot()
             // check if it's convertable to integer without precision loss
             var cfTmp = cf
             cfTmp.round(.down)
             if cf != cfTmp {
-                // precision loss
-                a += 1
-                continue
+                continue // precision loss
             }
             let c = Int(cf)
             if b >= c {
-                // constraint: a < b < c
-                a += 1
-                continue
+                continue // violates a < b < c
             }
             if a + b + c == 1000 {
                 return a * b * c
             }
-            a += 1
         }
-        b += 1
     }
     return -1
 }
