@@ -32,11 +32,13 @@ func pythagoreanTripletSumEquals1000() -> Int {
             cfTmp.round(.down)
             if cf != cfTmp {
                 // precision loss
+                a += 1
                 continue
             }
             let c = Int(cf)
             if b >= c {
                 // constraint: a < b < c
+                a += 1
                 continue
             }
             if a + b + c == 1000 {
