@@ -33,7 +33,7 @@ func p8_greatestProduct5ConsecutiveDigits() -> Int {
     
     var i = 0
     var greatestProduct = 0
-    let zeroValue = "0".unicodeScalars.map { $0.value }.reduce(0, +)
+    let zeroValue = "0".unicodeScalars.map { $0.value }[0]
     while i < s1000Array.count - 5 {
         var product = 1
         var j = 0
