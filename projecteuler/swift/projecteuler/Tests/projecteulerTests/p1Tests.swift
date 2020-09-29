@@ -24,7 +24,7 @@ final class p1Tests: XCTestCase {
 
     static var allTests = [
         ("test1000", test1000),
-        ("sum performance", testSumOfMultiplesPerformance),
-        ("faster sum performance", testFasterSumOfMultiplesPerformance)
+        ("testSumOfMultiplesPerformance", testSumOfMultiplesPerformance),
+        ("testFasterSumOfMultiplesPerformance", testFasterSumOfMultiplesPerformance)
     ]
 }

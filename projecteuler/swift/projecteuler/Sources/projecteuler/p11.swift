@@ -56,5 +56,58 @@ func greatestProductOfFourAdjacentNums() -> Int {
     gridStr += "20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54\n"
     gridStr += "01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48\n"
     
-    return -1
+    // Build 2D array
+    let lines = gridStr.split(whereSeparator: \.isNewline)
+    let numRows = lines.count
+    let numCols = lines[0].split(separator: " ").count
+    
+    var grid = Array(repeating: Array(repeating: 0, count: numCols), count: numRows)
+    var row = 0
+    for line in lines {
+        let lineCols = line.split(separator: " ")
+        guard lineCols.count == numCols else {
+            return -1 // not rectangular
+        }
+        var col = 0
+        for numStr in lineCols {
+            grid[row][col] = Int(numStr)!
+            col += 1
+        }
+        row += 1
+    }
+    
+    var greatestProduct = 0
+    for i in stride(from: 0, to: numRows, by: 1) {
+        for j in stride(from: 0, to: numCols, by: 1) {
+            // can we look right?
+            if j < numCols - 4 {
+                let product = grid[i][j] * grid[i][j+1] * grid[i][j+2] * grid[i][j+3]
+                if product > greatestProduct {
+                    greatestProduct = product
+                }
+            }
+            // can we look down?
+            if i < numRows - 4 {
+                let product = grid[i][j] * grid[i+1][j] * grid[i+2][j] * grid[i+3][j]
+                if product > greatestProduct {
+                    greatestProduct = product
+                }
+            }
+            // can we look down-right?
+            if j < numCols - 4 && i < numRows - 4 {
+                let product = grid[i][j] * grid[i+1][j+1] * grid[i+2][j+2] * grid[i+3][j+3]
+                if product > greatestProduct {
+                    greatestProduct = product
+                }
+            }
+            // can we look down-left?
+            if j >= 3 && i < numRows - 4 {
+                let product = grid[i][j] * grid[i+1][j-1] * grid[i+2][j-2] * grid[i+3][j-3]
+                if product > greatestProduct {
+                    greatestProduct = product
+                }
+            }
+        }
+    }
+    return greatestProduct
 }

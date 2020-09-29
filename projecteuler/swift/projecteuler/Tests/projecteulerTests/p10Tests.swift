@@ -6,6 +6,6 @@ final class p10Tests: XCTestCase {
         XCTAssertEqual(findSumOfPrimesBelow2Mill(), 142913828922)
     }
     static var allTests = [
-        ("findSumOfPrimesBelow2Mill", findSumOfPrimesBelow2Mill)
+        ("testFindSumOfPrimesBelow2Mill", testFindSumOfPrimesBelow2Mill)
     ]
 }

@@ -6,6 +6,6 @@ final class p9Tests: XCTestCase {
         XCTAssertEqual(pythagoreanTripletSumEquals1000(), 31875000)
     }
     static var allTests = [
-        ("pythagoreanTripletSumEquals1000", testPythagoreanTripletSumEquals1000)
+        ("testPythagoreanTripletSumEquals1000", testPythagoreanTripletSumEquals1000)
     ]
 }
