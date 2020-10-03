@@ -36,13 +36,12 @@ class TriangleNumGen {
 }
 
 func findTriNumWithOver500Divisors() -> Int {
-    return -1
-    
     let g = TriangleNumGen()
     while true {
         let x = g.next()
         do {
             let f = try factors(x)
+            //print(x, f.count)
             if f.count > 500 {
                 return x
             }
@@ -50,5 +49,4 @@ func findTriNumWithOver500Divisors() -> Int {
             return -1
         }
     }
-    return -1
 }
