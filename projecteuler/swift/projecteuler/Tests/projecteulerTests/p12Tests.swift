@@ -15,7 +15,11 @@ final class p12Tests: XCTestCase {
         XCTAssertEqual(g.next(), 45)
         XCTAssertEqual(g.next(), 55)
     }
+    func testFindTriNumWithOver500Divisors() {
+        XCTAssertEqual(findTriNumWithOver500Divisors(), 76576500)
+    }
     static var allTests = [
-        ("testTriangleNumGen", testTriangleNumGen)
+        ("testTriangleNumGen", testTriangleNumGen),
+        ("testFindTriNumWithOver500Divisors", testFindTriNumWithOver500Divisors)
     ]
 }

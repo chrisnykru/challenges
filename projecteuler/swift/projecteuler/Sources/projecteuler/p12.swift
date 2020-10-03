@@ -24,7 +24,6 @@ What is the value of the first triangle number to have over five hundred divisor
 
 */
 
-
 class TriangleNumGen {
     var a = 1
     var sum = 0
@@ -34,4 +33,22 @@ class TriangleNumGen {
         a += 1
         return sum
     }
+}
+
+func findTriNumWithOver500Divisors() -> Int {
+    return -1
+    
+    let g = TriangleNumGen()
+    while true {
+        let x = g.next()
+        do {
+            let f = try factors(x)
+            if f.count > 500 {
+                return x
+            }
+        } catch {
+            return -1
+        }
+    }
+    return -1
 }
