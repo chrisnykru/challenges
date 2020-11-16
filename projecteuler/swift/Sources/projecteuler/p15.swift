@@ -9,35 +9,28 @@ How many routes are there through a 20x20 grid?
 
 */
 
+import BigInt
 
-func factorial(_ n: Int) -> Int{
+func factorial(_ n: BigInt) -> BigInt{
     return n < 2 ? 1 : n * factorial(n-1)
 }
 
 // Square grid
-func numRoutes(squareSide: Int) -> Int {
+func numRoutes(squareSide: Int) -> BigInt {
     // Note: r1,r2,d1,d2 is the same route as r2,r1,d2,d1
     
     let n = squareSide * 2
     let k = squareSide
     
     // TODO: get factorial!
-    let nfac = factorial(n)
-    let kfac = factorial(k)
-    let n_minus_k_fac = factorial(n - k)
+    let nfac = factorial(BigInt(n))
+    let kfac = factorial(BigInt(k))
+    let n_minus_k_fac = factorial(BigInt(n - k))
     
     return nfac / (kfac * n_minus_k_fac)
 }
 
 /*
-package main
-
-import (
-        "fmt"
-        "github.com/zeroshirts/challenges/projecteuler/go/misc"
-        "math/big"
-)
-
 // square grid
 // no backtracking allowed
 func numRoutes(size int64) int64 {
@@ -52,9 +45,5 @@ func numRoutes(size int64) int64 {
 
         C := new(big.Int).Div(nfactorial, new(big.Int).Mul(kfactorial, nMinuskfactorial))
         return C.Int64()
-}
-
-func main() {
-        fmt.Println(numRoutes(20))
 }
 */
