@@ -28,13 +28,13 @@ func seqNext(_ x: Int) -> Int {
 }
 
 func seqLength(_ x: Int) -> Int {
-    var seqLen = 1
-    var tmp = x
-    while tmp != 1 {
-        tmp = seqNext(tmp)
-        seqLen += 1
+    var count = 1
+    var next = x
+    while next != 1 {
+        next = seqNext(next)
+        count += 1
     }
-    return seqLen
+    return count
 }
 
 func findLargestSeq(_ under: Int) -> (Int, Int) {

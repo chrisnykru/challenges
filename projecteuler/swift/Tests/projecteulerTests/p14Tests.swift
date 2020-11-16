@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by c on 10/29/20.
-//
-
 import XCTest
 @testable import projecteuler
 
