@@ -27,23 +27,6 @@ func numRoutes(squareSide: Int) -> BigInt {
     let kfac = factorial(BigInt(k))
     let n_minus_k_fac = factorial(BigInt(n - k))
     
+    // C(n,k) = n! / (k! * (n-k)!
     return nfac / (kfac * n_minus_k_fac)
 }
-
-/*
-// square grid
-// no backtracking allowed
-func numRoutes(size int64) int64 {
-        // note: r1,r2,d1,d2 is same route as r2,r1,d2,d1
-
-        n := size + size
-        k := size
-
-        nfactorial := misc.Factorial(n)
-        kfactorial := misc.Factorial(k)
-        nMinuskfactorial := misc.Factorial(n - k)
-
-        C := new(big.Int).Div(nfactorial, new(big.Int).Mul(kfactorial, nMinuskfactorial))
-        return C.Int64()
-}
-*/
