@@ -8,30 +8,15 @@ What is the sum of the digits of the number 2^1000?
 
 */
 
+import BigInt
 
-
-
-/*
-package main
-
-import (
-        "fmt"
-        "math/big"
-)
-
-func sumOfDigits(base, exponent *big.Int) *big.Int {
-        x := new(big.Int)
-        x.Exp(base, exponent, nil)
-
-        sum := big.NewInt(0)
-        for _, digit := range x.String() {
-                sum.Add(sum, big.NewInt(int64(digit-'0')))
-        }
-        return sum
+func sumOfDigits(base: BigInt, exponent: Int) -> Int {
+    var x = base.power(exponent)
+    var sum = 0
+    while x > 0 {
+        let r: BigInt
+        (x, r) = x.quotientAndRemainder(dividingBy: 10)
+        sum += Int(r)
+    }
+    return sum
 }
-
-func main() {
-        s := sumOfDigits(big.NewInt(2), big.NewInt(1000))
-        fmt.Printf("sum of digits = %s\n", s)
-}
-*/

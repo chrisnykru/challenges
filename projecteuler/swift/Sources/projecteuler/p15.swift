@@ -7,6 +7,7 @@ Starting in the top left corner of a 2x2 grid, there are 6 routes
 
 How many routes are there through a 20x20 grid?
 
+https://projecteuler.net/project/images/p015.png
 */
 
 import BigInt
