@@ -8,27 +8,24 @@ final class p17Tests: XCTestCase {
         x = numLetters("one hundred and fifteen")
         XCTAssertEqual(x, 20)
     }
+    func testNumToString() {
+        do {
+            var s = try numToString(342)
+            XCTAssertEqual(s, "three hundred and forty two")
+            try s = numToString(115)
+            XCTAssertEqual(s, "one hundred and fifteen")
+        } catch {
+            XCTFail()
+        }
+    }
     static var allTests = [
         ("testNumLetters", testNumLetters),
+        ("testNumToString", testNumToString),
     ]
 }
 
 /*
  
- func TestNumToString(t *testing.T) {
-         s1 := numToString(342)
-         expStr := "three hundred and forty two" // forty two ~= forty-two for our purposes
-         if s1 != expStr {
-                 t.Errorf("s1 = %v, want %v", s1, expStr)
-         }
-
-         s1 = numToString(115)
-         expStr = "one hundred and fifteen"
-         if s1 != expStr {
-                 t.Errorf("s1 = %v, want %v", s1, expStr)
-         }
- }
-
  func TestCount_1_to_1000(t *testing.T) {
          count := letterCount_1_to_1000()
          if count != 21124 {
