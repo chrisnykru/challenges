@@ -18,19 +18,18 @@ final class p17Tests: XCTestCase {
             XCTFail()
         }
     }
+    func testCount1To1000() {
+        do {
+            var x: Int
+            try x = letterCount1To1000()
+            XCTAssertEqual(x, 21124)
+        } catch {
+            XCTFail()
+        }
+    }
     static var allTests = [
         ("testNumLetters", testNumLetters),
         ("testNumToString", testNumToString),
+        ("testCount1To1000", testCount1To1000),
     ]
 }
-
-/*
- 
- func TestCount_1_to_1000(t *testing.T) {
-         count := letterCount_1_to_1000()
-         if count != 21124 {
-                 t.Errorf("count = %v, want %v", count, 21124)
-         }
- }
-
- */

@@ -155,6 +155,16 @@ func numToString(_ x: Int) throws -> String {
     return s
 }
 
+func letterCount1To1000() throws -> Int {
+    var count = 0
+    for i in stride(from: 1, through: 1000, by: 1) {
+        var s: String
+        try s = numToString(i)
+        count += numLetters(s)
+    }
+    return count
+}
+
 /*
  
 func letterCount_1_to_1000() int {
