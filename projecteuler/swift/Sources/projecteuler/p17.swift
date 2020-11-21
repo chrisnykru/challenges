@@ -164,16 +164,3 @@ func letterCount1To1000() throws -> Int {
     }
     return count
 }
-
-/*
- 
-func letterCount_1_to_1000() int {
- count := 0
- for i := 1; i <= 1000; i++ {
-         s := numToString(i)
-         count += numLetters(s)
- }
- return count
-}
- 
-*/
