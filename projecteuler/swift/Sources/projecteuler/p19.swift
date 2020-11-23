@@ -87,22 +87,17 @@ struct date: Equatable {
     }
 }
 
-// 1900-Jan-1 was a Monday
-func reference() -> date {
-    return date(year: 1900, month: 1, dayOfMonth: 1, dayOfWeek: 1)
-}
-
 // intentionally not using any standard library stuff
 func sundaysOnFirstOfMonth() throws -> Int {
     var d1 = date()
     
     // iterate until we reach start of 20th century
-    while d1.year != 1901 && d1.month != 1 && d1.dayOfMonth != 1 {
+    while d1.year != 1901 || d1.month != 1 || d1.dayOfMonth != 1 {
         d1 = try d1.next()
     }
     // d1 is now at 1901-Jan-1
     var sundayOnFirstCount = 0
-    while d1.year != 2000 && d1.month != 12 && d1.dayOfMonth != 31 {
+    while d1.year != 2000 || d1.month != 12 || d1.dayOfMonth != 31 {
         if d1.dayOfMonth == 1 && d1.dayOfWeek == 7 {
             sundayOnFirstCount += 1
         }
