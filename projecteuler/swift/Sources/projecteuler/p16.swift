@@ -10,7 +10,7 @@ What is the sum of the digits of the number 2^1000?
 
 import BigInt
 
-func sumOfDigits(base: BigInt, exponent: Int) -> Int {
+func sumOfDigitsBaseExponent(base: BigInt, exponent: Int) -> Int {
     var x = base.power(exponent)
     var sum = 0
     while x > 0 {
