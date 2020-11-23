@@ -63,17 +63,13 @@ func parseTriangle(_ s: String) throws -> [[Int]] {
     var lastNumCols = 0
     for i in stride(from: 0, to: rows.count, by: 1) {
         let rowCols = rows[i].split(separator: " ")
-        if rowCols.count != lastNumCols + 1 {
-            throw ProjectEulerError.internalError
+        guard rowCols.count == lastNumCols + 1 else {
+            throw ProjectEulerError.internalError // not our desired triangle shape
         }
         lastNumCols = rowCols.count
-        
-        //// convert [String] to [Int]
-        var x: [Int] = []
-        for colStr in rowCols {
-            x.append(Int(colStr)!)
-        }
-        tri.append(x)
+        tri.append(rowCols.map({ (v: Substring.SubSequence) -> Int in
+            return Int(v)!
+        }))
     }
     return tri
 }
