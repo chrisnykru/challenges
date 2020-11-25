@@ -14,8 +14,9 @@ enum ProjectEulerError: Error {
 }
 
 // Results are not sorted
+// Zero has no factors
 func factors(_ x: Int) throws -> [Int] {
-    guard x > 0 else {
+    guard x >= 0 else {
         throw ProjectEulerError.outOfRange
     }
     var res = [Int:Bool]()
