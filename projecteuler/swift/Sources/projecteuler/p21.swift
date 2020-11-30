@@ -32,16 +32,14 @@ func sumOfAmicableNumbers(under: Int) throws -> Int {
             // constraint: a != b
             continue
         }
-        print("-->", a, b)
         let a_maybe = try d(b)
-        print("-->  ", a_maybe)
         guard a_maybe == a else {
             // not amicably paired
             continue
         }
         
         // amicable pair
-        print("a. pair", a, b)
+        //print("a. pair", a, b)
         amicablePairs[a] = b
         amicablePairs[b] = a
     }

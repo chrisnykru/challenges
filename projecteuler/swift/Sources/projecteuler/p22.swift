@@ -48,21 +48,29 @@ func nameScore(_ name: String) -> Int {
  }
  */
 
-/*
+
 func totalNameScore() throws -> Int {
     let path = Bundle.module.path(forResource: "names", ofType: "txt")!
     print("resource path:", path)
     let contents = try String(contentsOfFile: path)
     
     var totalScore = 0
+    let quoteValue = "\"".utf8.map { $0 }[0]
     let names = contents.split(separator: ",")
     for n in names {
-        
-        
+        let tmp = n.utf8.map { $0 }
+        if tmp[0] != quoteValue || tmp[tmp.count - 1] != quoteValue {
+            throw ProjectEulerError.internalError
+        }
+        var withoutQuotes = n
+        withoutQuotes.removeFirst()
+        withoutQuotes.removeLast()
+        let score = nameScore(String(withoutQuotes))
+        print(n, score)
+        totalScore += score
     }
     return totalScore
 }
- */
 
 
 /*

@@ -22,7 +22,10 @@ let package = Package(
         .target(
             name: "projecteuler",
             dependencies: ["BigInt"],
-            resources: [.copy("Resources/triangle.txt")]
+            resources: [
+                .copy("Resources/triangle.txt"),
+                .copy("Resources/names.txt")
+            ]
         ),
         
         .testTarget(
