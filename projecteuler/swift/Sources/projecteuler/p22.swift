@@ -17,9 +17,10 @@ What is the total of all the name scores in the file?
 
 func nameScore(_ name: String) -> Int {
     var score = 0
-    let capA_Value = "A".unicodeScalars.map { $0.value }[0] + 1 // value(A) = 1
+    let capA_Value = "A".unicodeScalars.map { $0.value }[0]
     for c in name.utf8 {
-        score += Int(c) - Int(capA_Value)
+        print(c, capA_Value)
+        score += Int(c) - Int(capA_Value) + 1 // A needs to equal 1, B needs to equal 2, etc..
     }
     return score
 }
