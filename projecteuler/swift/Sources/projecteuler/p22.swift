@@ -15,37 +15,57 @@ What is the total of all the name scores in the file?
 
 */
 
+import Foundation
+
 func nameScore(_ name: String) -> Int {
     var score = 0
-    let capA_Value = "A".unicodeScalars.map { $0.value }[0]
+    let capA_Value = "A".utf8.map { $0 }[0]
     for c in name.utf8 {
-        print(c, capA_Value)
-        score += Int(c) - Int(capA_Value) + 1 // A needs to equal 1, B needs to equal 2, etc..
+        //print(c, capA_Value)
+        // A needs to equal 1, B needs to equal 2, etc..
+        score += Int(c) - Int(capA_Value) + 1
     }
     return score
 }
+
+/*
+ 
+ func parseTriangle(_ s: String) throws -> [[Int]] {
+     var tri: [[Int]] = []
+     let rows = s.split(separator: "\n")
+     var lastNumCols = 0
+     for i in stride(from: 0, to: rows.count, by: 1) {
+         let rowCols = rows[i].split(separator: " ")
+         guard rowCols.count == lastNumCols + 1 else {
+             throw ProjectEulerError.internalError // not our desired triangle shape
+         }
+         lastNumCols = rowCols.count
+         tri.append(rowCols.map({ (v: Substring.SubSequence) -> Int in
+             return Int(v)!
+         }))
+     }
+     return tri
+ }
+ */
+
+/*
+func totalNameScore() throws -> Int {
+    let path = Bundle.module.path(forResource: "names", ofType: "txt")!
+    print("resource path:", path)
+    let contents = try String(contentsOfFile: path)
+    
+    var totalScore = 0
+    let names = contents.split(separator: ",")
+    for n in names {
+        
+        
+    }
+    return totalScore
+}
+ */
 
 
 /*
-package main
-
-import (
-    "encoding/csv"
-    "fmt"
-    "io"
-    "log"
-    "os"
-    "sort"
-)
-
-func nameScore(name string) int64 {
-    score := int64(0)
-    for _, v := range name {
-        letterScore := int64(v - 'A' + 1)
-        score += letterScore
-    }
-    return score
-}
 
 func totalNameScores(r io.Reader) int64 {
     csv := csv.NewReader(r)
