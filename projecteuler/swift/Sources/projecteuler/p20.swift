@@ -27,20 +27,3 @@ func sumOfDigitsOfFactorial(_ n: Int) -> Int {
     let x = factorial(BigInt(n))
     return sumDigits(x)
 }
-
-
-/*
-func sumDigits(x *big.Int) int64 {
-    sum := big.NewInt(0)
-    for _, digit := range x.String() {
-        sum.Add(sum, big.NewInt(int64(digit)-'0'))
-    }
-    return sum.Int64()
-}
-
-func main() {
-    f := misc.Factorial(100)
-    fmt.Printf("factorial = %s\n", f)
-    fmt.Printf("sum = %v\n", sumDigits(f))
-}
-*/
