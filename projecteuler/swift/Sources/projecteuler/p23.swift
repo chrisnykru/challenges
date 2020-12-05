@@ -25,26 +25,25 @@ func sumAllPosIntNotWriteableAsSumOfTwoAbundantNum() throws -> Int {
     // remember: p21's d(n) is sum of proper divisors
     // everything over 28123 can be written as sum of two abundant numbers
     var abundant: [Int] = []
+    // this overcounts, but not by much
     for i in stride(from: 12, through: 28123, by: 1) {
         if try d(i) > i {
             abundant.append(i)
         }
     }
     
-    // XXX wrong wording..concept..
-    // now find all combinations in set of 'abundant'
-    // (a,b,c,d) -> (a,b), (a,c), (a,d), (b,c), (b,d), (c,d)
-    var combinations = [Int:Bool]()
+    // a+b == b+a, so ignore duplicates
+    var canSumFrom2abundant = [Int:Bool]()
     for i in stride(from: 0, to: abundant.count, by: 1) {
         for j in stride(from: i, to: abundant.count, by: 1) {
-            combinations[abundant[i] + abundant[j]] = true
+            canSumFrom2abundant[abundant[i] + abundant[j]] = true
         }
     }
     
     var sum = 0
-    // from: 24, but...
+    // from: 24, but account for (1..23) this way
     for i in stride(from: 1, through: 28123, by: 1) {
-        if let _ = combinations[i] {
+        if let _ = canSumFrom2abundant[i] {
         } else {
             sum += i
         }
