@@ -12,9 +12,15 @@ https://projecteuler.net/project/images/p015.png
 
 import BigInt
 
+func factorial<T: BinaryInteger>(_ n: T) -> T {
+    return n < 2 ? 1 : n * factorial(n - 1)
+}
+
+/*
 func factorial(_ n: BigInt) -> BigInt{
     return n < 2 ? 1 : n * factorial(n-1)
 }
+*/
 
 // Square grid
 func numRoutes(squareSide: Int) -> BigInt {

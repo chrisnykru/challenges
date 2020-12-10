@@ -24,13 +24,8 @@ func NewPermGen(_ x: [Int]) throws -> PermGen {
         throw ProjectEulerError.outOfRange
     }
     
-    var numCount = [Int:Int]()
-    for x_i in x {
-        if let count = numCount[x_i] {
-            numCount[x_i] = count + 1
-        } else {
-            numCount[x_i] = 1
-        }
+    let numCount = x.reduce(into: [:]) { counts, elements in
+        counts[elements, default: 1] += 1
     }
     
     var pg: PermGen = PermGen()
@@ -38,13 +33,13 @@ func NewPermGen(_ x: [Int]) throws -> PermGen {
     pg.perm.sort()
     
     // deal with overcounting from any duplicates
-    for count in numCount {
+    for (_, count) in numCount {
         pg.remaining /= factorial(count)
     }
     
-    
     return pg
 }
+
 
 /*
  
@@ -72,4 +67,35 @@ func NewPermGen(_ x: [Int]) throws -> PermGen {
      return gen
  }
 
+ */
+
+
+/*
+ 
+ 
+ func (gen *PermGen) current() (perm []int, last bool) {
+     perm = make([]int, len(gen.perm))
+     copy(perm, gen.perm)
+     return perm, gen.countdown == 1
+ }
+
+ func (gen *PermGen) Next() (perm []int, last bool) {
+     perm, last = gen.current()
+     for j := len(gen.perm) - 2; j >= 0; j-- {
+         for i := len(gen.perm) - 1; i > j; i-- {
+             if gen.perm[i] > gen.perm[j] {
+                 // swap
+                 gen.perm[i], gen.perm[j] = gen.perm[j], gen.perm[i]
+                 // reverse
+                 reverse(gen.perm[j+1:])
+                 gen.countdown--
+                 return
+             }
+         }
+     }
+     return
+ }
+
+ 
+ 
  */
