@@ -17,8 +17,68 @@ digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
 struct PermGen {
     var perm: [Int] = []
     var remaining: Int = 0
+    
+    init(_ x: [Int]) throws {
+        if x.count == 0 {
+            throw ProjectEulerError.outOfRange
+        }
+        
+        let numCount = x.reduce(into: [:]) { counts, elements in
+            counts[elements, default: 0] += 1
+        }
+        self.perm = x
+        self.perm.sort()
+        self.remaining = factorial(x.count)
+        print("**", self.remaining)
+        
+        // deal with overcounting from any duplicates
+        for (_, count) in numCount {
+            self.remaining /= factorial(count)
+            print("  **", self.remaining)
+        }
+    }
+    
+    func get() -> ([Int], Bool) {
+        return (self.perm, self.remaining == 1)
+    }
+    
+    mutating func next() -> ([Int], Bool) {
+        let (perm, last) = self.get()
+        for j in stride(from: self.perm.count - 2, through: 0, by: -1) {
+            for i in stride(from: self.perm.count - 1, to: j, by: -1) {
+                if self.perm[i] > self.perm[j] {
+                    self.perm.swapAt(i, j)
+                    self.perm[j+1..<self.perm.count].reverse()
+                    self.remaining -= 1
+                    return (perm, last)
+                }
+            }
+        }
+        return (perm, last)
+    }
+    
+    /*
+     
+     func (gen *PermGen) Next() (perm []int, last bool) {
+         perm, last = gen.current()
+         for j := len(gen.perm) - 2; j >= 0; j-- {
+             for i := len(gen.perm) - 1; i > j; i-- {
+                 if gen.perm[i] > gen.perm[j] {
+                     // swap
+                     gen.perm[i], gen.perm[j] = gen.perm[j], gen.perm[i]
+                     // reverse
+                     reverse(gen.perm[j+1:])
+                     gen.countdown--
+                     return
+                 }
+             }
+         }
+         return
+     }
+     */
 }
 
+/*
 func NewPermGen(_ x: [Int]) throws -> PermGen {
     if x.count == 0 {
         throw ProjectEulerError.outOfRange
@@ -39,6 +99,7 @@ func NewPermGen(_ x: [Int]) throws -> PermGen {
     
     return pg
 }
+ */
 
 
 /*
