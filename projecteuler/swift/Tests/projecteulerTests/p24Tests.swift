@@ -66,47 +66,17 @@ final class p24Tests: XCTestCase {
         }
     }
     
-    /*
-    func testPermGen__() {
+    func testPerm1e6() {
         do {
-            var x = try PermGen([0,1,2])
-            var (p, last) = x.next()
-            XCTAssertEqual(p, [0,1,2])
-            XCTAssertEqual(last, false)
-            
-            (p, last) = x.next()
-            XCTAssertEqual(p, [0,2,1])
-            XCTAssertEqual(last, false)
-            
-            (p, last) = x.next()
-            XCTAssertEqual(p, [1,0,2])
-            XCTAssertEqual(last, false)
-            
-            (p, last) = x.next()
-            XCTAssertEqual(p, [1,2,0])
-            XCTAssertEqual(last, false)
-            
-            (p, last) = x.next()
-            XCTAssertEqual(p, [2,0,1])
-            XCTAssertEqual(last, false)
-            
-            (p, last) = x.next()
-            XCTAssertEqual(p, [2,1,0])
-            XCTAssertEqual(last, true)
-            
-            // should repeat
-            (p, last) = x.next()
-            XCTAssertEqual(p, [2,1,0])
-            XCTAssertEqual(last, true)
-            
-            
-            //XCTAssertEqual(x, 4179871)
+            let x = try perm1e6()
+            XCTAssertEqual(x, [2, 7, 8, 3, 9, 1, 5, 4, 6, 0])
         } catch {
             XCTFail()
         }
     }
-    */
+    
     static var allTests = [
         ("testPermGen", testPermGen),
+        ("testPerm1e6", testPerm1e6),
     ]
 }

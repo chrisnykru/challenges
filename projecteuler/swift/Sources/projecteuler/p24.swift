@@ -56,107 +56,13 @@ struct PermGen {
         }
         return (perm, last)
     }
-    
-    /*
-     
-     func (gen *PermGen) Next() (perm []int, last bool) {
-         perm, last = gen.current()
-         for j := len(gen.perm) - 2; j >= 0; j-- {
-             for i := len(gen.perm) - 1; i > j; i-- {
-                 if gen.perm[i] > gen.perm[j] {
-                     // swap
-                     gen.perm[i], gen.perm[j] = gen.perm[j], gen.perm[i]
-                     // reverse
-                     reverse(gen.perm[j+1:])
-                     gen.countdown--
-                     return
-                 }
-             }
-         }
-         return
-     }
-     */
 }
 
-/*
-func NewPermGen(_ x: [Int]) throws -> PermGen {
-    if x.count == 0 {
-        throw ProjectEulerError.outOfRange
+func perm1e6() throws -> [Int] {
+    var x = try PermGen([0,1,2,3,4,5,6,7,8,9])
+    var perm: [Int] = []
+    for _ in stride(from: 0, to: 1e6, by: 1) {
+        (perm, _) = x.next()
     }
-    
-    let numCount = x.reduce(into: [:]) { counts, elements in
-        counts[elements, default: 1] += 1
-    }
-    
-    var pg: PermGen = PermGen()
-    pg.perm = x
-    pg.perm.sort()
-    
-    // deal with overcounting from any duplicates
-    for (_, count) in numCount {
-        pg.remaining /= factorial(count)
-    }
-    
-    return pg
+    return perm
 }
- */
-
-
-/*
- 
- func New(x []int) *PermGen {
-     if len(x) == 0 {
-         panic("empty set")
-     }
-
-     xiCount := make(map[int]int)
-     for i := range x {
-         xiCount[x[i]]++
-     }
-
-     gen := &PermGen{
-         perm:      make([]int, len(x)),
-         countdown: factorial(len(x)),
-     }
-     copy(gen.perm, x)
-     sort.Ints(gen.perm)
-
-     // deal with any overcounting
-     for _, count := range xiCount {
-         gen.countdown /= factorial(count)
-     }
-     return gen
- }
-
- */
-
-
-/*
- 
- 
- func (gen *PermGen) current() (perm []int, last bool) {
-     perm = make([]int, len(gen.perm))
-     copy(perm, gen.perm)
-     return perm, gen.countdown == 1
- }
-
- func (gen *PermGen) Next() (perm []int, last bool) {
-     perm, last = gen.current()
-     for j := len(gen.perm) - 2; j >= 0; j-- {
-         for i := len(gen.perm) - 1; i > j; i-- {
-             if gen.perm[i] > gen.perm[j] {
-                 // swap
-                 gen.perm[i], gen.perm[j] = gen.perm[j], gen.perm[i]
-                 // reverse
-                 reverse(gen.perm[j+1:])
-                 gen.countdown--
-                 return
-             }
-         }
-     }
-     return
- }
-
- 
- 
- */
