@@ -29,12 +29,10 @@ struct PermGen {
         self.perm = x
         self.perm.sort()
         self.remaining = factorial(x.count)
-        print("**", self.remaining)
         
         // deal with overcounting from any duplicates
         for (_, count) in numCount {
             self.remaining /= factorial(count)
-            print("  **", self.remaining)
         }
     }
     
