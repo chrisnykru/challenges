@@ -25,41 +25,34 @@ What is the first term in the Fibonacci sequence to contain 1000 digits?
 
 */
 
-// TODO: make fibonacci generator
+import BigInt
 
-struct FibonacciGen {
-    var x: Int
-    var y: Int
+struct FibonacciGen<T: Numeric> {
+    var x: T
+    var y: T
     
     init() {
         self.x = 0
         self.y = 1
     }
     
-    // x=0,y=1; (1),0; (1),1; (2),1; (3),2
-    mutating func next() -> Int {
+    mutating func next() -> T {
         (self.x, self.y) = (self.x + self.y, self.x)
         return self.x
     }
 }
 
-
-
-/*
- var x = 1
- var y = 1
- var sum = 0 // first two terms are odd
- 
- while x <= doNotExceed {
-     (x,y) = (x + y, x)
-     if x % 2 == 0 {
-         sum += x
-     }
- }
- return sum
- */
-
-
+func firstFibTermOfNDigits(n: Int) -> (Int, String) {
+    var gen = FibonacciGen<BigInt>()
+    var term = 1
+    while true {
+        let x = gen.next()
+        if String(x).count >= n {
+            return (term, String(x))
+        }
+        term += 1
+    }
+}
 
 /*
  
@@ -74,16 +67,6 @@ struct FibonacciGen {
      panic("???")
  }
 
- func main() {
-     term, digit := firstFibTermOfNDigits(1000)
-     fmt.Printf("F_%v = %s\n", term, digit)
- }
  
- func Test(t *testing.T) {
-     term, _ := firstFibTermOfNDigits(1000)
-     if term != 4782 {
-         t.Errorf("term = %v, want %v", 4782)
-     }
- }
 
  */
