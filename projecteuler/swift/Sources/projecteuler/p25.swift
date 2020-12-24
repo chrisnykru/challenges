@@ -53,20 +53,3 @@ func firstFibTermOfNDigits(n: Int) -> (Int, String) {
         term += 1
     }
 }
-
-/*
- 
- func firstFibTermOfNDigits(numDigits int) (term int, digit string) {
-     fgen := fibonacci.NewBigIntGen()
-     for term = 1; ; term++ {
-         x := fgen()
-         if len(x.String()) >= numDigits {
-             return term, x.String()
-         }
-     }
-     panic("???")
- }
-
- 
-
- */
