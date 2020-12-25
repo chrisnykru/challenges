@@ -29,73 +29,52 @@ func cycle(_ d: Int) -> Int {
     // assumption: worst-case cycle length for 1/d is d-1
     // pow==10**d sufficient to determine second worst-case
     //            cycle length of floor(d/2)
-    // 1/13 --> 1*10**13/13 = 769230769230; cycle len = 6
+    //
+    // if d=13: 1/13 --> 10**13/13 = 769230769230; cycle len = 6
     let x = BigInt(10).power(d)
     
-    print(x)
-    
-    return -1
-}
-
-
-/*
-func cycle(d uint) uint {
-    // assumption: worst-case cycle length for 1/d is d-1
-    // pow==10**d sufficient to determine second worst-case
-    //            cycle length of floor(d/2)
-    // 1/13 --> 1*10**13/13 = 769230769230; cycle len = 6
-    pow := new(big.Int).Exp(big.NewInt(10), big.NewInt(int64(d)), nil)
-
-    numerator := new(big.Int).Mul(big.NewInt(1), pow)
-    m := new(big.Int)
-    _, m = new(big.Int).DivMod(numerator, big.NewInt(int64(d)), m)
-    if m.Cmp(big.NewInt(0)) == 0 {
-        return 0
+    // if d=13: m = 10**13 - (13 * 769230769230) = 10
+    let (_, m) = x.quotientAndRemainder(dividingBy: BigInt(d))
+    if m == 0 {
+        return 0 // modulus is zero, no cycle
     }
-
+    
     // eliminates any non-repeating prefix
     // e.g., 1/6=.166666; after elimination: 666
-    numerator = new(big.Int).Mul(m, pow)
-    x2, m := new(big.Int).DivMod(numerator, big.NewInt(int64(d)), m)
-
-    x2s := x2.String()
-    for sublen := 1; sublen <= len(x2s)/2; sublen++ {
-        match := 0
-        for i := 0; i < sublen; i++ {
-            if x2s[i] == x2s[i+sublen] {
-                match++
+    //
+    // if d=13: num = 10 * 10000000000000 = 100000000000000
+    let num = m * x
+    
+    // if d=13: x2 = 100000000000000 / 13 = 7692307692307
+    //          m2 = 100000000000000 - (7692307692307 * 13) = 9
+    let (x2, _) = num.quotientAndRemainder(dividingBy: BigInt(d))
+    
+    //print(d, x2, m2)
+    
+    let x2_array = String(x2).unicodeScalars.map { $0.value }
+    for sublen in stride(from: 1, through: x2_array.count/2, by: 1) {
+        var match = 0
+        for i in stride(from: 0, to: sublen, by: 1) {
+            if x2_array[i] == x2_array[i + sublen] {
+                match += 1
             }
         }
         if match == sublen {
-            return uint(sublen)
+            return match
         }
     }
-
-    return uint(len(x2s) - 1)
+    return x2_array.count - 1
 }
 
-func longestCycle(dMax uint) (denom, length uint) {
-    for d := uint(2); d < dMax; d++ {
-        cycleLen := cycle(d)
-        if cycleLen > length {
-            denom = d
-            length = cycleLen
+func findLongestCycle(_ dMax: Int) -> (d: Int, cycleLen: Int) {
+    var longestD = 0
+    var longestCycleLen = 0
+    for d in stride(from: 2, to: dMax, by: 1) {
+        let cycleLen = cycle(d)
+        if cycleLen > longestCycleLen {
+            longestD = d
+            longestCycleLen = cycleLen
         }
     }
-    return
+    return (longestD, longestCycleLen)
 }
- 
- 
- func Test(t *testing.T) {
-     d, dlen := longestCycle(1000)
-     if d != 983 {
-         t.Errorf("d=%v, want %v", d, 983)
-     }
-     if dlen != 981 {
-         t.Errorf("dlen=%v, want %v", dlen, 981)
-     }
- }
-
- 
- 
-*/
