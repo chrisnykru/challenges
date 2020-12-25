@@ -30,32 +30,27 @@ func cycle(_ d: Int) -> Int {
     // pow==10**d sufficient to determine second worst-case
     //            cycle length of floor(d/2)
     //
-    // if d=13: 1/13 --> 10**13/13 = 769230769230; cycle len = 6
-    let x = BigInt(10).power(d)
+    // if d=13: pow10LeftShift = 10**13
+    let pow10LeftShift = BigInt(10).power(d)
     
     // if d=13: m = 10**13 - (13 * 769230769230) = 10
-    let (_, m) = x.quotientAndRemainder(dividingBy: BigInt(d))
+    let (_, m) = pow10LeftShift.quotientAndRemainder(dividingBy: BigInt(d))
     if m == 0 {
         return 0 // modulus is zero, no cycle
     }
-    
+     
     // eliminates any non-repeating prefix
-    // e.g., 1/6=.166666; after elimination: 666
-    //
-    // if d=13: num = 10 * 10000000000000 = 100000000000000
-    let num = m * x
+    // if d=13: num = 10 * 10**13 = 10**14
+    let num = m * pow10LeftShift
     
-    // if d=13: x2 = 100000000000000 / 13 = 7692307692307
-    //          m2 = 100000000000000 - (7692307692307 * 13) = 9
-    let (x2, _) = num.quotientAndRemainder(dividingBy: BigInt(d))
+    // if d=13: q = 10**14 / 13 = 7692307692307
+    let (q, _) = num.quotientAndRemainder(dividingBy: BigInt(d))
     
-    //print(d, x2, m2)
-    
-    let x2_array = String(x2).unicodeScalars.map { $0.value }
-    for sublen in stride(from: 1, through: x2_array.count/2, by: 1) {
+    let q_array = String(q).unicodeScalars.map { $0.value }
+    for sublen in stride(from: 1, through: q_array.count/2, by: 1) {
         var match = 0
         for i in stride(from: 0, to: sublen, by: 1) {
-            if x2_array[i] == x2_array[i + sublen] {
+            if q_array[i] == q_array[i + sublen] {
                 match += 1
             }
         }
@@ -63,7 +58,7 @@ func cycle(_ d: Int) -> Int {
             return match
         }
     }
-    return x2_array.count - 1
+    return q_array.count - 1
 }
 
 func findLongestCycle(_ dMax: Int) -> (d: Int, cycleLen: Int) {
