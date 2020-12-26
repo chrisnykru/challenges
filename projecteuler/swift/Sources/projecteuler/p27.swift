@@ -24,26 +24,29 @@ starting with n = 0.
 
 */
 
+// note: approx 79k primes from [1,1e6]
+// we don't know how many consecutive values of n will generate primes,
+// so we just pick 1e6 as upper bound for our prime check lookup table.
+let p27maxPrimeCandidate = 1000000
+
 func primeyQuadratic(a: Int, b: Int, n: Int) -> Int {
     return n * n + a * n + b
 }
 
-func primesForConsecutiveN(a: Int, b: Int) -> [Int] {
+func primesForConsecutiveN(a: Int, b: Int) throws -> [Int] {
     // precompute list of primes
-    // note: approx 79k primes from [1,1e6]
-    // we don't know how many consecutive values of n will generate primes,
-    // so we just pick 1e6 as upper bound for our prime check lookup table.
-    let primes = eratosthenesSieve(to: 1000000)
-    let primeMap: [Int: Bool] = primes.reduce(into: [:], { result, next in
-        result[next] = true
+    let primes = eratosthenesSieve(to: p27maxPrimeCandidate)
+    let primeMap: [Int: Bool] = primes.reduce(into: [:], { result, e in
+        result[e] = true
     })
     
     var n = 0
     var consecutiveN_primes: [Int] = []
     while true {
         let pq = primeyQuadratic(a: a, b: b, n: n)
-        
-        //let keyExists = dict[key] != nil
+        if pq >= p27maxPrimeCandidate {
+            throw ProjectEulerError.outOfRange
+        }
         if primeMap[pq] == nil {
             break // not prime -> consecutive sequence broken
         }
@@ -53,14 +56,14 @@ func primesForConsecutiveN(a: Int, b: Int) -> [Int] {
     return consecutiveN_primes
 }
 
-func optimalAB() -> (optimalA: Int, optimalB: Int, primes: [Int]) {
+func optimalAB() throws -> (optimalA: Int, optimalB: Int, primes: [Int]) {
     var optimalA: Int = 0
     var optimalB: Int = 0
     var primes: [Int] = []
     
     for a in stride(from: -999, through: 999, by: 1) {
         for b in stride(from: -999, through: 999, by: 1) {
-            let p = primesForConsecutiveN(a: a, b: b)
+            let p = try primesForConsecutiveN(a: a, b: b)
             if p.count > primes.count {
                 primes = p
                 optimalA = a
@@ -70,28 +73,3 @@ func optimalAB() -> (optimalA: Int, optimalB: Int, primes: [Int]) {
     }
     return (optimalA, optimalB, primes)
 }
-
-
-/*
-
- func optimalAB() (optimalA, optimalB int, primes []uint64) {
-     for a := -999; a <= 999; a++ {
-         for b := -999; b <= 999; b++ {
-             p := primesForConsecutiveN(a, b)
-             if len(p) > len(primes) {
-                 primes = p
-                 optimalA = a
-                 optimalB = b
-             }
-         }
-     }
-     return
- }
- 
- func Test(t *testing.T) {
-     
- }
-
-
- 
- */
